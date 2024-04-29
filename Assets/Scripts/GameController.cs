@@ -10,4 +10,8 @@ public class GameController : MonoBehaviour
     {
         score++;
     }
+    public void DecreaseScore() //second listener
+    {
+        score--;
+    }
 }
