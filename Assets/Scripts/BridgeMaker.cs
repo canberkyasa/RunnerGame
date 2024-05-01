@@ -9,6 +9,7 @@ public class BridgeMaker : MonoBehaviour
     [SerializeField] private float delatBetweenActivation = 0.2f;
 
     public UnityEvent decreaseScoreByOne;
+    private GameController gameController;
 
     void Start()
     {
@@ -16,7 +17,7 @@ public class BridgeMaker : MonoBehaviour
 
         // Eðer GameController veya UIController bileþenleri bu nesnede eksikse, null hatasý alabiliriz.
         // FindGmeObjectWithTag hýzlý, FindObjectOfType ise daha yavaþ çalýþýr.
-        GameController gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         if (gameController != null)
             decreaseScoreByOne.AddListener(gameController.DecreaseScore);
         else
@@ -53,6 +54,11 @@ public class BridgeMaker : MonoBehaviour
 
         for (int i = 0; i < bridge.childCount; i++)
         {
+            if (gameController.score <= 0)
+            {
+                Debug.Log("Not enough score to activate the bridge.");
+                yield break;
+            }
             bridge.GetChild(i).gameObject.SetActive(true);
             decreaseScoreByOne.Invoke();
             yield return new WaitForSeconds(delatBetweenActivation);
