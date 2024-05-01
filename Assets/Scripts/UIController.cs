@@ -20,4 +20,8 @@ public class UIController : MonoBehaviour
         scoreText.text = gameController.score.ToString();
     }
 
+    public void GameOver()
+    {
+        Debug.Log("Game Over");
+    }
 }
