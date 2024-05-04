@@ -3,22 +3,15 @@ using UnityEngine;
 
 public class test_script : MonoBehaviour
 {
-    public float delayBetweenDisable = 0.5f;
+    private GameController.Color color;
 
-    void Start()
+    private void Start()
     {
-        StartCoroutine(DisableChildObjects());
+        color = GameController.Color.Blue;
     }
 
-    IEnumerator DisableChildObjects()
+    private void Update()
     {
-        // Parent objenin altýndaki tüm child objeleri al
-        foreach (Transform child in transform)
-        {
-            // Child objeyi devre dýþý býrak
-            child.gameObject.SetActive(false);
-            // Belirli bir süre bekleyerek diðer child objelere geç
-            yield return new WaitForSeconds(delayBetweenDisable);
-        }
+        Debug.Log(color);
     }
 }
