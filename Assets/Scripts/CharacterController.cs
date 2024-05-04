@@ -13,16 +13,6 @@ public class CharacterController : MonoBehaviour
     private bool isGameStarted = true;   
 
     private float newPositionX;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void FixedUpdate()
     {

@@ -5,13 +5,24 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public int score { get; private set; }
+    public int wood { get; private set; }
 
-    public void IncrementScore() //first listener
+    //GEM
+    public void IncrementScore(int x) { score += x; }
+    public void DecreaseScore() { score--; }
+    
+    //PLANK
+    public void IncrementWood() { wood++;}
+    public void DecreaseWood() { wood--; }
+
+    private void OnEnable()
     {
-        score++;
+        EventManager.IncrementScore += IncrementScore;
+        EventManager.IncrementWood += IncrementWood;
     }
-    public void DecreaseScore() //second listener
+    private void OnDisable()
     {
-        score--;
+        EventManager.IncrementScore -= IncrementScore;
+        EventManager.IncrementWood -= IncrementWood;
     }
 }

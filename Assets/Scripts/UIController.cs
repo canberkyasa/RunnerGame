@@ -10,18 +10,30 @@ public class UIController : MonoBehaviour
 
     private void Start()
     {
-        gameController = FindObjectOfType<GameController>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        //gameController = FindObjectOfType<GameController>();
         scoreText.text = gameController.score.ToString();
         
     }
 
     public void UpdateScore()
     {
+        Debug.Log("Score Updated");
         scoreText.text = gameController.score.ToString();
     }
 
     public void GameOver()
     {
         Debug.Log("Game Over");
+    }
+
+    private void OnEnable()
+    {
+        EventManager.GemCollected += UpdateScore;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.GemCollected -= UpdateScore;
     }
 }
