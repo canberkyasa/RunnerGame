@@ -15,7 +15,7 @@ public class UIController : MonoBehaviour
         scoreText.text = gameController.score.ToString();
         
     }
-
+    // PRIVATE YAP!!!!
     public void UpdateScore()
     {
         Debug.Log("Score Updated");
@@ -30,10 +30,12 @@ public class UIController : MonoBehaviour
     private void OnEnable()
     {
         EventManager.GemCollected += UpdateScore;
+        EventManager.GameOver += GameOver;
     }
 
     private void OnDisable()
     {
         EventManager.GemCollected -= UpdateScore;
+        EventManager.GameOver -= GameOver;
     }
 }

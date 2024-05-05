@@ -28,6 +28,10 @@ public static class EventManager
     public static event UnityAction<GameController.Color> ChangeColor;
     public static void OnChangeColor(GameController.Color newColor) => ChangeColor?.Invoke(newColor);
 
+    //GameOver event
+    public static event UnityAction GameOver;
+    public static void OnGameOver() => GameOver?.Invoke();
+
 
     //WoodCollected event
     public static event UnityAction WoodCollected;

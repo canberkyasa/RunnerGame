@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
-    // Start is called before the first frame update
 
     [SerializeField] private InputCharacter inputCharacter;
     [SerializeField] private float speed = 5.0f;
@@ -36,8 +35,17 @@ public class CharacterController : MonoBehaviour
         transform.position = new Vector3(newPositionX, transform.position.y, transform.position.z);
     }
 
-    public void GameStop()
+    private void StopGame() // CHANGE THIS TO PRIVATE
     {
         isGameStarted = false;
+    }
+
+    private void OnEnable()
+    {
+        EventManager.GameOver += StopGame;
+    }
+    private void OnDisable()
+    {
+        EventManager.GameOver -= StopGame;
     }
 }

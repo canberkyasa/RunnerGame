@@ -42,10 +42,13 @@ public class GameController : MonoBehaviour
             color = newColor;
 
             EventManager.OnSetColor(color);
-            EventManager.OnChangeColor(color); //Splash effects and other stuff.
         }
     }
-    private void SetColor(Color newColor) { color = newColor; }
+    private void SetColor(Color newColor)
+    {
+        EventManager.OnChangeColor(newColor); //Splash effects and other stuff.
+        color = newColor;
+    }
 
     //PLANK
     private void IncrementWood() { wood++;}
